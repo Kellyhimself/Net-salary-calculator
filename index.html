@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Salary Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    
+<body>
+    <header>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#home">SUBJECTS</a></li>
+            <li><a href="#home">CONTACT</a></li>
+            <li><a href="#home">HELP</a></li>                       
+        </ul>
+        <hr>
+    </header>  
+    <div id="inputForm">
+        <!-- lets create a form with a label, input field and input, type of submit -->
+        <form>
+            <label for="basicSalary">Enter your basic salary (Ksh):</label>
+            <input  id="basicSalary" type="number">
+            
+        </form>
+        <br>
+        <!-- lets create a form with a label, input field and input, type of submit -->
+        <form>
+            <label for="benefits">Enter your benefits (Ksh):</label>
+            <input  id="benefits" type="number">
+            
+        </form>
+        <br>
+        <!-- create buttons that will initiate the different calculations; -->
+        <button id="paye" onclick="calculatePayee()">Calculate Payee</button></br>
+        <p id="payeValue"></p>
+        <button id="nhif" onclick="calculateNhif()">Calculate NHIF</button><br>
+        <p id="nhifValue"></p>
+        <button id="nssf" onclick="calculateNssf()">Calculate NSSF</button><br>
+        <p id="nssfValue"></p>
+        <button id="gross" onclick="calculateGross()">Calculate Gross Salary</button><br>
+        <p id="grossValue"></p>
+        <button id="net" onclick="calculateNet()">Calculate Net Salary</button><br>
+        <p id="netValue"></p>
+    </div> 
+    <script src="index.js"></script> 
+</body>
+
+</html>
