@@ -1,89 +1,20 @@
-/* //get the input elements
-const basicSalary = document.getElementById("basicSalary");
-const benefits = document.getElementById("benefits");
-//listen to the elements or addEventListeners
-//1. event listener for basicSalary
-basicSalary.addEventListener("input", (event) => {
-  //fetch the value after the event
+// Event listener for the basicSalary input field.
+document.getElementById("basicSalary").addEventListener("input", (event) => {
+  // Get the basic salary value .
   const basicSalary = event.target.value;
-  //then store the data in our local storage, we will need it later
+
+  // Save the basic salary in a variable,locally for future use.
   localStorage.setItem("basicSalary", basicSalary);
 });
-//2. event listener for benefits
-benefits.addEventListener("input", (event) => {
-  //get the value after the event
+
+// Event listener for the benefits input field.
+document.getElementById("benefits").addEventListener("input", (event) => {
+  // Get the value of the benefits input field.
   const benefits = event.target.value;
-  //then store the data in our local storage, we will need it later
+
+  // Store the benefits in a variable.
   localStorage.setItem("benefits", benefits);
 });
-
-//retrieve the saved variables from our local
-
-// Function to fetch the tax rate data from the remote server.
-const fetchTaxRateData = async () => {
-  const response = await fetch("https://www.aren.co.ke/payroll/taxrates.htm");
-  const taxRateData = await response.json();
-  return taxRateData;
-};
-
-// Function to calculate the NHIF deduction.
-const calculateNhif = () => {
-  const taxRateData = fetchTaxRateData();
-  const basicSalary = parseInt(localStorage.getItem("basicSalary"));
-  const benefits = parseInt(localStorage.getItem("benefits"));
-  const grossSalary = basicSalary + benefits;
-  // Calculate the NHIF deduction using the tax rate data.
-  const nhifDeduction = grossSalary * taxRateData.nhif_rate;
-  const nhifValue = document.getElementById("nhifValue");
-  nhifValue.innerText = `Your NHIF is: ${nhifDeduction}`;
-  return nhifDeduction;
-};
-
-// Function to calculate the NSSF deduction.
-const calculateNssf = () => {
-  const taxRateData = fetchTaxRateData();
-  const basicSalary = parseInt(localStorage.getItem("basicSalary"));
-  const benefits = parseInt(localStorage.getItem("benefits"));
-  const grossSalary = basicSalary + benefits;
-
-  // Calculate the NSSF deduction using the tax rate data.
-  const nssfDeduction = grossSalary * taxRateData.nssf_rate;
-  const nssfValue = document.getElementById("nssfValue");
-  nssfValue.innerText = `Your NSSF is: ${nssfDeduction}`;
-
-  return nssfDeduction;
-};
-
-// Function to calculate the total payroll deductions.
-const calculateTotalPayrollDeductions = (taxableIncome, grossSalary) => {
-  // Calculate the income tax, NHIF deduction, and NSSF deduction.
-  const incomeTax = calculatePayee(taxableIncome);
-  const nhifDeduction = calculateNhif(grossSalary);
-  const nssfDeduction = calculateNssf(grossSalary);
-
-  // Calculate the total payroll deductions.
-  const totalPayrollDeductions = incomeTax + nhifDeduction + nssfDeduction;
-
-  return totalPayrollDeductions;
-};
-function calculateNet() {
-  const payee = calculatePayee();
-  const nhif = calculateNhif();
-  const nssf = calculateNssf();
-
-  const netPay = basicSalary + benefits - (payee + nhif + nssf);
-  const netValue = document.getElementById("nssfValue");
-  netValue.innerText = `Your Net Salary is: ${netPay}`;
-}
-
-function calculateGross() {
-  const basicSalary = parseInt(localStorage.getItem("basicSalary"));
-  const benefits = parseInt(localStorage.getItem("benefits"));
-  const grossPay = basicSalary + benefits;
-  const grossValue = document.getElementById("nssfValue");
-  grossValue.innerText = `Your gross salary is be: ${grossPay}`;
-}
- */
 function calculatePayee() {
   const basicSalary = parseInt(localStorage.getItem("basicSalary"));
   const benefits = parseInt(localStorage.getItem("benefits"));
@@ -102,9 +33,10 @@ function calculatePayee() {
   let totalTax = 0;
 
   for (const taxBracket of taxBracketsArray) {
-    const taxablePotion =
-      Math.min(taxableIncome, taxBracket.maximum) - taxBracket.minimum;
-    taxInThisBracket = taxablePotion * taxBracket.rate;
+    const taxablePotion = Math.min(
+      (taxableIncome, taxBracket.maximum) - taxBracket.minimum
+    );
+    const taxInThisBracket = taxablePotion * taxBracket.rate;
     totalTax += taxInThisBracket;
     const payeValue = document.getElementById("payeValue");
     payeValue.innerText = `Your PAYE is ${totalTax}`;
@@ -143,7 +75,7 @@ function calculateNhif() {
   for (const nhifBracket of nhifBracketsArray) {
     const nhifdeductablePotion =
       Math.min(deductableIncome, nhifBracket.maximum) - nhifBracket.minimum;
-    nhifInThisBracket = (nhifdeductablePotion / 100) * nhifBracket.rate;
+    let nhifInThisBracket = (nhifdeductablePotion / 100) * nhifBracket.rate;
     totalNhif += nhifInThisBracket;
     const nhifValue = document.getElementById("nhifValue");
     nhifValue.innerText = `Your NHIF is ${totalNhif}`;
