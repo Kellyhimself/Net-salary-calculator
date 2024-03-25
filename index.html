@@ -33,18 +33,25 @@
         </form>
         <br>
         <!-- create buttons that will initiate the different calculations; -->
-        <button id="paye" onclick="calculatePayee()">Calculate Payee</button></br>
-        <p id="payeValue"></p>
-        <button id="nhif" onclick="calculateNhif()">Calculate NHIF</button><br>
-        <p id="nhifValue"></p>
-        <button id="nssf" onclick="calculateNssf()">Calculate NSSF</button><br>
-        <p id="nssfValue"></p>
-        <button id="gross" onclick="calculateGross()">Calculate Gross Salary</button><br>
-        <p id="grossValue"></p>
-        <button id="net" onclick="calculateNet()">Calculate Net Salary</button><br>
-        <p id="netValue"></p>
+        <div id="buttons">
+            <button id="gross" onclick="calculateGross()">Calculate Gross Salary</button><br>
+            <p id="grossValue"></p>
+
+            <div id="deductions">
+                
+                <div class="buttonsDiv"><button id="paye" onclick="calculatePaye()">Calculate Payee</button></br>
+                <p id="payeValue"></p></div>
+                <div class="buttonsDiv"></div><button id="nhif" onclick="calculateNhif()">Calculate NHIF</button><br>
+                <p id="nhifValue"></p></div>
+                <div class="buttonsDiv"><button id="nssf" onclick="calculateNssf()">Calculate NSSF</button><br>
+                <p id="nssfValue"></p></div>
+            </div>
+            
+            <button id="net" onclick="calculateNet()">Calculate Net Salary</button><br>
+            <p id="netValue"></p>
+        </div>
     </div> 
-    <script src="index.js"></script> 
+    <script src="netSalary.js"></script> 
 </body>
 
 </html>

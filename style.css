@@ -16,3 +16,17 @@ header ul li{
     text-align: center; 
    /*  flex-wrap: wrap;  */
 }
+#inputForm{
+    border: 3px solid;
+    align-items: center;
+    border-radius: 2px;
+    border-color: black solid;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    text-align: center;
+    position: absolute;   
+    top: 20%;
+    left:30%;
+}
